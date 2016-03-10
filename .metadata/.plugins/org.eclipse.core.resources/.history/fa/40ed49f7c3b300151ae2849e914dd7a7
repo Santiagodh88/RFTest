@@ -1,0 +1,47 @@
+package testCases;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import pageObjects.CreateStatesPage;
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import pageObjects.StatesPage;
+
+public class CreateStateTest {
+	
+	WebDriver driver;
+	
+  @Test
+  public void test() {
+	  LoginPage onLoginPage = new LoginPage (driver);
+	  onLoginPage = onLoginPage.navigateToWebApp();
+	  HomePage onHomePage = onLoginPage.LoginAsAdmin();
+	  StatesPage onStatesPage = onHomePage.clickOnStates();
+	  CreateStatesPage onCreateStatesPage = onStatesPage.createState();
+	  onCreateStatesPage.CompleteAllFields();
+	  
+	  WebElement element = driver.findElement(By.cssSelector(".html body div.container div.alert.alert-info.alert-dismissable"));
+	  String strng = element.getText();
+	  System.out.println(strng);
+	  Assert.assertEquals(strng, "Nada");
+	  //Record was successfully created.
+  }
+  
+  @BeforeTest
+  public void beforeTest() {
+	  driver = new FirefoxDriver ();
+  }
+
+  @AfterTest
+  public void afterTest() {
+	  //driver.close();
+  }
+
+}

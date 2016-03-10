@@ -1,0 +1,20 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class TestSelenium {
+
+	public static void main(String[] args) {
+		WebDriver driver = new FirefoxDriver();
+		 driver.get("https://auth.afip.gob.ar/contribuyente_/");
+		 WebElement cuit = driver.findElement(By.name("F1:j_idt34"));
+		 cuit.sendKeys("20337949178");
+		 WebElement pass = driver.findElement(By.name("F1:j_idt45"));
+		 pass.sendKeys("Scr34m3r");
+		 
+		 
+		 
+	}
+
+}
